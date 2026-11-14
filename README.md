@@ -53,10 +53,17 @@ src/main/resources
 
 ## Screenshots
 
-![Login](screenshots/login.png)
-![Available Events](screenshots/events.png)
-![Create Event](screenshots/create-event.png)
-![Registered Users](screenshots/registered-users.png)
+### Login
+![Login](Screenshots/Login%20page.png)
+
+### Register
+![Register](Screenshots/Register%20Page.png)
+
+### Available Events
+![Available Events](Screenshots/Available%20events.png)
+
+### Admin: Event Management
+![Event Management](Screenshots/Event%20Management.png)
 
 ## Author
 
