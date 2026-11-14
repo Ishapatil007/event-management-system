@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registered Users</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        .back {
+            margin-top: 25px;
+            text-align: center;
+        }
+
+        a {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Registered Users</h2>
+
+        <table>
+            <tr>
+                <th>User Name</th>
+                <th>Email</th>
+                <th>Event Name</th>
+            </tr>
+
+            <tr th:each="booking : ${bookings}">
+                <td th:text="${booking.user.name}"></td>
+                <td th:text="${booking.user.email}"></td>
+                <td th:text="${booking.event.eventName}"></td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(bookings)}">
+                <td colspan="3" style="text-align:center;">
+                    No users registered yet.
+                </td>
+            </tr>
+        </table>
+
+        <div class="back">
+            <a href="/admin-dashboard">Back to Admin Dashboard</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

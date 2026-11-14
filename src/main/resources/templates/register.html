@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Event Management - Register</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-container {
+            width: 480px;
+            padding: 55px 45px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 45px;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ccc;
+        }
+
+        p {
+            text-align: center;
+            font-size: 17px;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <h2>Register</h2>
+
+        <form action="/register" method="post" autocomplete="off">
+
+            <input type="text"
+                   name="name"
+                   placeholder="Enter your name"
+                   autocomplete="off"
+                   required>
+
+            <input type="email"
+                   name="email"
+                   placeholder="Enter your email"
+                   autocomplete="off"
+                   required>
+
+            <input type="password"
+                   name="password"
+                   placeholder="Enter your password"
+                   autocomplete="new-password"
+                   required>
+
+            <button type="submit">Sign Up</button>
+
+        </form>
+
+        <p th:if="${param.error}">
+            Email already registered!
+        </p>
+
+        <p>
+            Already have an account?
+            <a href="/">Log In</a>
+        </p>
+
+    </div>
+
+</body>
+</html>

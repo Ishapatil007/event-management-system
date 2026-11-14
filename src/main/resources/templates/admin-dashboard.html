@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Dashboard</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #eee;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .view-btn:hover {
+            background-color: #ccc;
+        }
+
+        .create-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            color: black;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .users-section {
+            margin-top: 20px;
+        }
+
+        .users-section h3 {
+            color: #333;
+            font-size: 18px;
+        }
+
+        .user-name {
+            border: 1px solid #ddd;
+            background-color: #fafafa;
+            padding: 8px;
+            margin-bottom: 5px;
+        }
+
+        .logout {
+            text-align: center;
+            margin-top: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2>Event Management</h2>
+
+        <p>
+            <a href="/create-event" class="create-btn">
+                Create New Event
+            </a>
+        </p>
+
+        <!-- Events Table -->
+
+        <table>
+
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>View Users</th>
+            </tr>
+
+            <tr th:each="event : ${events}">
+
+                <td th:text="${event.eventName}"></td>
+
+                <td th:text="${event.date}"></td>
+
+                <td th:text="${event.location}"></td>
+
+                <td>
+                    <a class="view-btn"
+                       th:href="@{/event-registrations/{eventId}(eventId=${event.id})}">
+                        View Users
+                    </a>
+                </td>
+
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(events)}">
+                <td colspan="4" style="text-align:center;">
+                    No events have been created yet.
+                </td>
+            </tr>
+
+        </table>
+
+        <!-- Registered Users Section -->
+
+        <div class="users-section"
+             th:if="${selectedEvent != null}">
+
+            <h3>
+                Users Registered for
+                <span th:text="${selectedEvent.eventName}"></span>:
+            </h3>
+
+            <div th:each="booking : ${bookings}"
+                 class="user-name"
+                 th:text="${booking.user.name}">
+            </div>
+
+            <p th:if="${#lists.isEmpty(bookings)}">
+                No users have registered for this event yet.
+            </p>
+
+        </div>
+
+        <!-- Logout -->
+
+        <div class="logout">
+            <a href="/logout">Log Out</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
