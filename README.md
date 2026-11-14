@@ -67,4 +67,4 @@ src/main/resources
 
 ## Author
 
-[Your Name]
+Isha Patil
